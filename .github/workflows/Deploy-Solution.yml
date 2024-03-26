@@ -1,4 +1,4 @@
-name: export-solution
+name: deploy-solution
 
 on:
   workflow_dispatch:
