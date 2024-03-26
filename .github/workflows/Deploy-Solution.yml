@@ -1,0 +1,41 @@
+name: export-solution
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+
+    runs-on: windows-latest   # alternate runner OS is: ubuntu-latest
+
+    steps:
+    - name: Install Power Platform Tools
+      uses: microsoft/powerplatform-actions/actions-install@v1
+
+    - name: Export Solution
+      uses: microsoft/powerplatform-actions/export-solution@v1
+      with:
+        environment-url: 'https://org80c0c729.crm8.dynamics.com/'
+        app-id: ae393b69-14a9-4076-b470-4be8182aad41
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: 5bac9eb0-1e6b-463d-8dbb-6ba2477914b9
+        solution-name: Ballard_SCAUserManagment
+        solution-output-file: 'out/solutions/exported/GithubTest.zip'
+
+    - name: Import solution to prod env
+      uses: microsoft/powerplatform-actions/import-solution@v1
+      with:
+        environment-url: 'https://org5fb7f156.crm8.dynamics.com/'
+        app-id: ae393b69-14a9-4076-b470-4be8182aad41
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: 5bac9eb0-1e6b-463d-8dbb-6ba2477914b9
+        solution-file: 'out/solutions/exported/GithubTest.zip'
+        force-overwrite: true
+        publish-changes: true
+
+    - name: Publish Solution
+      uses: microsoft/powerplatform-actions/publish-solution@v1
+      with:
+        environment-url: 'https://org5fb7f156.crm8.dynamics.com/'
+        app-id: ae393b69-14a9-4076-b470-4be8182aad41
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: 5bac9eb0-1e6b-463d-8dbb-6ba2477914b9
