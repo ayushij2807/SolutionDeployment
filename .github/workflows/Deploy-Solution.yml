@@ -21,20 +21,13 @@ env:
   TENANT_ID: '5bac9eb0-1e6b-463d-8dbb-6ba2477914b9'
 jobs:
   build:
-    runs-on: windows-latest
+
+    runs-on: windows-latest   # alternate runner OS is: ubuntu-latest
 
     steps:
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install Power Platform CLI
-      run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
-      
     - name: Install Power Platform Tools
       uses: microsoft/powerplatform-actions/actions-install@v1
-      
+
     - name: Publish Solution
       uses: microsoft/powerplatform-actions/publish-solution@v1
       with:
@@ -52,7 +45,7 @@ jobs:
         tenant-id: ${{env.TENANT_ID}}
         solution-name: ${{ github.event.inputs.solution_name }}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        
+
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
@@ -63,7 +56,5 @@ jobs:
         solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
-    - name: Update Environment Variable
-      run: |
-        pac auth create --url ${{env.TARGET_ENVIRONMENT_URL}} --applicationId ${{env.CLIENT_ID}} --clientSecret ${{ secrets.PowerPlatformSPN }} --tenant ${{env.TENANT_ID}}
-        pac solution env-var set --name "SCA_SiteUrl" --value "https://mypersorg.sharepoint.com/sites/Prod" --environmentUrl ${{env.TARGET_ENVIRONMENT_URL}}
+        use-deployment-settings-file: true
+        deployment-settings-file: test.json
