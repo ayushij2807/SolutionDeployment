@@ -56,3 +56,7 @@ jobs:
         solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
+    - name: Update Environment Variable
+      run: |
+        pac auth create --url ${{env.TARGET_ENVIRONMENT_URL}} --applicationId ${{env.CLIENT_ID}} --clientSecret ${{ secrets.PowerPlatformSPN }} --tenant ${{env.TENANT_ID}}
+        pac solution env-var set --name "SCA_SiteUrl" --value "https://mypersorg.sharepoint.com/sites/Prod" --environmentUrl ${{env.TARGET_ENVIRONMENT_URL}}
