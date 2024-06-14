@@ -56,3 +56,6 @@ jobs:
         solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
+
+    - name: Set env
+      run: echo "SCA_SiteUrl=abc" >> $GITHUB_ENV
