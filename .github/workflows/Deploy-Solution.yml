@@ -26,13 +26,7 @@ jobs:
 
     steps:
     - name: Main
-      run: dir ${{ github.workspace }}
-      
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: packed-solution
-        path: ${{ github.workspace }}/release/
+      run: echo {'EnvironmentVariables':[{'SchemaName':'SCA_SiteUrl','Value':'ABCD']} > ${{ github.workspace }}\release\test.json
 
     - name: Install Power Platform Tools
       uses: microsoft/powerplatform-actions/actions-install@v1
