@@ -27,6 +27,12 @@ jobs:
     steps:
     - name: Install Power Platform Tools
       uses: microsoft/powerplatform-actions/actions-install@v1
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: packed-solution
+        path: release/
 
     - name: Publish Solution
       uses: microsoft/powerplatform-actions/publish-solution@v1
@@ -57,4 +63,4 @@ jobs:
         force-overwrite: true
         publish-changes: true
         use-deployment-settings-file: true
-        deployment-settings-file: 'test.json'
+        deployment-settings-file: release/test.json
