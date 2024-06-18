@@ -29,10 +29,10 @@ jobs:
       uses: microsoft/powerplatform-actions/actions-install@v1
       
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: packed-solution
-        path: release/
+        path: ./release/
 
     - name: Publish Solution
       uses: microsoft/powerplatform-actions/publish-solution@v1
