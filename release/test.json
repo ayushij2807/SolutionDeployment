@@ -2,7 +2,7 @@
   "EnvironmentVariables": [
     {
       "SchemaName": "SCA_SiteUrl",
-      "Value": https://mypersorg.sharepoint.com/sites/Testing/111"
+      "Value": "https://mypersorg.sharepoint.com/sites/Testing/111"
     }
   ],
   "ConnectionReferences": [
