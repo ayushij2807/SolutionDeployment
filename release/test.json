@@ -1,21 +1,23 @@
 {
   "EnvironmentVariables": [
     {
-      "SchemaName": "ce_ContosoTestingVariable001",
-      "Value": "Updateing value from Actions"
-    },
-    {
-      "SchemaName": "cu_ContosoUniversitySPOITList",
-      "Value": "19af515d-18a3-465b-8b02-925580b36c04"
-    },
-    {
-      "SchemaName": "cu_ContosoUniversitySPOITSite",
-      "Value": "https://mngenvmcap157851.sharepoint.com/sites/NewEmployeeOnboarding/"
+      "SchemaName": "SCA_SiteUrl",
+      "Value": https://mypersorg.sharepoint.com/sites/Testing/111"
     }
   ],
   "ConnectionReferences": [
     {
-      "LogicalName": "cu_ContosoUniversitySPOITConRef",
+      "LogicalName": "cr738_SCA_SharePointUser",
+      "ConnectionId": "",
+      "ConnectorId": ""
+    },
+    {
+      "LogicalName": "cr738_sharedsharepointonline_15d25",
+      "ConnectionId": "",
+      "ConnectorId": ""
+    },
+    {
+      "LogicalName": "cr738_SharePointUser",
       "ConnectionId": "",
       "ConnectorId": ""
     }
