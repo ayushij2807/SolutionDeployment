@@ -26,7 +26,10 @@ jobs:
 
     steps:
     - name: Main
-      run: echo {'EnvironmentVariables':\[{'SchemaName':'SCA_SiteUrl','Value':'ABCD'\]} > ${{ github.workspace }}\test.json
+      run: echo ${{ toJSON("{'EnvironmentVariables':[{'SchemaName':'SCA_SiteUrl','Value':'ABCD']}") }} > ${{ github.workspace }}\test.json
+    
+    - name: read
+      run: more ${{ github.workspace }}\test.json
 
     - name: Install Power Platform Tools
       uses: microsoft/powerplatform-actions/actions-install@v1
