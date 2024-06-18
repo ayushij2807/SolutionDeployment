@@ -1,23 +1,13 @@
 {
   "EnvironmentVariables": [
     {
-      "SchemaName": "SCA_SiteUrl",
-      "Value": "https://mypersorg.sharepoint.com/sites/Testing/111"
+      "SchemaName": "dev_DemoConnection",
+      "Value": ""
     }
   ],
   "ConnectionReferences": [
     {
-      "LogicalName": "cr738_SCA_SharePointUser",
-      "ConnectionId": "",
-      "ConnectorId": ""
-    },
-    {
-      "LogicalName": "cr738_sharedsharepointonline_15d25",
-      "ConnectionId": "",
-      "ConnectorId": ""
-    },
-    {
-      "LogicalName": "cr738_SharePointUser",
+      "LogicalName": "dev_sharedcommondataserviceforapps_a4c3e",
       "ConnectionId": "",
       "ConnectorId": ""
     }
