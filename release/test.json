@@ -4,12 +4,5 @@
       "SchemaName": "dev_DemoConnection",
       "Value": "123"
     }
-  ],
-  "ConnectionReferences": [
-    {
-      "LogicalName": "dev_sharedcommondataserviceforapps_a4c3e",
-      "ConnectionId": "",
-      "ConnectorId": ""
-    }
   ]
 }
