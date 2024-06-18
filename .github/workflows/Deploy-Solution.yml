@@ -32,7 +32,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: packed-solution
-        path: ./release/
+        path: ${{ github.workspace }}/release/
 
     - name: Publish Solution
       uses: microsoft/powerplatform-actions/publish-solution@v1
