@@ -2,7 +2,7 @@
   "EnvironmentVariables": [
     {
       "SchemaName": "dev_DemoConnection",
-      "Value": ""
+      "Value": "123"
     }
   ],
   "ConnectionReferences": [
