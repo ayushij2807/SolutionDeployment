@@ -57,4 +57,4 @@ jobs:
         force-overwrite: true
         publish-changes: true
         use-deployment-settings-file: true
-        deployment-settings-file: 'SolutionDeployment/test.json'
+        deployment-settings-file: 'test.json'
