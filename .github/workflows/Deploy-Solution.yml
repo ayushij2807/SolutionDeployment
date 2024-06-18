@@ -25,12 +25,8 @@ jobs:
     runs-on: windows-latest   # alternate runner OS is: ubuntu-latest
 
     steps:
-    - name: Main
-      run: echo {'EnvironmentVariables': [ { 'SchemaName':'SCA_SiteUrl','Value':'ABCD' } ] } > ${{ github.workspace }}\test.json
+    - uses: actions/checkout@v2
     
-    - name: read
-      run: more ${{ github.workspace }}\test.json
-
     - name: Install Power Platform Tools
       uses: microsoft/powerplatform-actions/actions-install@v1
       
@@ -63,4 +59,4 @@ jobs:
         force-overwrite: true
         publish-changes: true
         use-deployment-settings-file: true
-        deployment-settings-file: test.json
+        deployment-settings-file: release/test.json
