@@ -1,7 +1,7 @@
 {
   "EnvironmentVariables": [
     {
-      "SchemaName": "dev_DemoConnection",
+      "SchemaName": "cr738_SCA_SiteUrl",
       "Value": "123"
     }
   ]
