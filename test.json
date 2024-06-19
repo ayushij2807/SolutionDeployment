@@ -1,8 +1,7 @@
 {
   "EnvironmentVariables": [
     {
-      "SchemaName": "SCA_SiteUrl",
-      "Value": "ABCD"
+      "SCA_SiteUrl": "ABCD"
     }
   ]
 }
