@@ -32,18 +32,14 @@ jobs:
     steps:
     - name: Set env
       run: |
-        if [[ '${{github.event.inputs.source}}' == 'dev' ]]; then
+        if [[ "${{github.event.inputs.source}}" == "dev" ]]; then
           echo "NEED=true" >> "$GITHUB_ENV"
           echo "ENVIRONMENT_URL=https://org80c0c729.crm8.dynamics.com/" >> "$GITHUB_ENV"
           echo "TARGET_ENVIRONMENT_URL=https://org5fb7f156.crm8.dynamics.com/" >> "$GITHUB_ENV"
           echo "CLIENT_ID=ae393b69-14a9-4076-b470-4be8182aad41" >> "$GITHUB_ENV"
           echo "TENANT_ID=5bac9eb0-1e6b-463d-8dbb-6ba2477914b9" >> "$GITHUB_ENV"
-        else [[ '${{github.event.inputs.source}}' == 'qa' ]]; then
+        else 
           echo "NEED=true" >> "$GITHUB_ENV"
-          echo "ENVIRONMENT_URL=https://org80c0c729.crm8.dynamics.com/" >> "$GITHUB_ENV"
-          echo "TARGET_ENVIRONMENT_URL=https://org5fb7f156.crm8.dynamics.com/" >> "$GITHUB_ENV"
-          echo "CLIENT_ID=ae393b69-14a9-4076-b470-4be8182aad41" >> "$GITHUB_ENV"
-          echo "TENANT_ID=5bac9eb0-1e6b-463d-8dbb-6ba2477914b9" >> "$GITHUB_ENV"
         fi
 
     - uses: actions/checkout@v2
