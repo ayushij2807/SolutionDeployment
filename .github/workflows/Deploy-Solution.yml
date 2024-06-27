@@ -30,16 +30,12 @@ jobs:
     runs-on: windows-latest   # alternate runner OS is: ubuntu-latest
 
     steps:
-    - name: Set env
+    - name: My Step
       run: |
-        if [[ "${{github.event.inputs.source}}" == "dev" ]]; then
-          echo "NEED=true" >> "$GITHUB_ENV"
-          echo "ENVIRONMENT_URL=https://org80c0c729.crm8.dynamics.com/" >> "$GITHUB_ENV"
-          echo "TARGET_ENVIRONMENT_URL=https://org5fb7f156.crm8.dynamics.com/" >> "$GITHUB_ENV"
-          echo "CLIENT_ID=ae393b69-14a9-4076-b470-4be8182aad41" >> "$GITHUB_ENV"
-          echo "TENANT_ID=5bac9eb0-1e6b-463d-8dbb-6ba2477914b9" >> "$GITHUB_ENV"
-        else 
-          echo "NEED=true" >> "$GITHUB_ENV"
+        if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          echo "This runs only for the 'main' branch"
+        else
+          echo "This runs for other branches"
         fi
 
     - uses: actions/checkout@v2
