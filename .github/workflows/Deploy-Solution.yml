@@ -1,79 +1,13 @@
 name: deploy-solution
 
-on:
-  workflow_dispatch:
-    inputs:
-      source:
-        type: choice
-        description: Select source environment
-        required: true
-        options:
-        - dev
-        - qa
-      solution_name:
-        description: 'name of the solution to worked on from Power Platform'
-        required: true
-        default: Ballard_SCAUserManagment
-        #Do Not change these values
-      solution_exported_folder:
-        description: 'folder name for staging the exported solution *do not change*'
-        required: true
-        default: out/solutions/exported/
-      managed:
-        description: 'Export as managed solution; default is to export as unmanaged solution'
-        required: false
-        default: 'false'
+on: [push]
 
 jobs:
-  build:
-
-    runs-on: windows-latest   # alternate runner OS is: ubuntu-latest
-
+  my_job:
+    runs-on: windows-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: What is the event?
-      run: |
-        if [ ${{ github.event_name }} == 'pull_request' ]; then
-          echo "This is a pull request event"
-        elif [ ${{ github.event_name }} == 'push' ]; then
-          echo "This is a push event"
-        else
-          echo "This is an unknown event"
-        fi
-        
-    - name: Install Power Platform Tools
-      uses: microsoft/powerplatform-actions/actions-install@v1
-      
-    - name: Publish Solution
-      uses: microsoft/powerplatform-actions/publish-solution@v1
-      with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
-        
-    - name: Export Solution
-      uses: microsoft/powerplatform-actions/export-solution@v1
-      with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
-        managed: ${{ github.event.inputs.managed }}
-        solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        
-    - name: Import solution to prod env
-      uses: microsoft/powerplatform-actions/import-solution@v1
-      with:
-        environment-url: ${{env.TARGET_ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        force-overwrite: true
-        publish-changes: true
-        use-deployment-settings-file: true
-        deployment-settings-file: release/test.json
+      - name: Set environment variable
+        run: echo "MY_VARIABLE=some_value" >> $env:GITHUB_ENV
+      - name: Check condition
+        if: env.MY_VARIABLE == 'some_value'
+        run: echo "Condition is true!"
