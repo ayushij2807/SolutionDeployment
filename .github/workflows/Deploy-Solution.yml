@@ -3,13 +3,13 @@ name: deploy-solution
 on:
   workflow_dispatch:
     inputs:
-      source:
+      target:
         type: choice
         description: Select source environment
         required: true
         options:
-        - dev
         - qa
+        - prod
       solution_name:
         description: 'name of the solution to worked on from Power Platform'
         required: true
@@ -28,21 +28,19 @@ jobs:
   build:
 
     runs-on: windows-latest   # alternate runner OS is: ubuntu-latest
-
+    environment: ${{ github.event.inputs.target }}
     steps:
     - name: Push to QA
-      if: "contains(github.event.inputs.source, 'dev')"
+      if: "contains(github.event.inputs.target, 'qa')"
       run: |
-          echo  ${{github.event.inputs.source}}
           echo "ENVIRONMENT_URL=https://org80c0c729.crm8.dynamics.com/" >> $env:GITHUB_ENV
           echo "TARGET_ENVIRONMENT_URL=https://org5fb7f156.crm8.dynamics.com/" >> $env:GITHUB_ENV
           echo "CLIENT_ID=ae393b69-14a9-4076-b470-4be8182aad41" >> $env:GITHUB_ENV
           echo "TENANT_ID=5bac9eb0-1e6b-463d-8dbb-6ba2477914b9" >> $env:GITHUB_ENV
           
     - name: Push to Prod    
-      if: "contains(github.event.inputs.source, 'qa')"
+      if: "contains(github.event.inputs.target, 'prod')"
       run: |
-          echo  ${{github.event.inputs.source}}
           echo "ENVIRONMENT_URL=https://org5fb7f156.crm8.dynamics.com/" >> $env:GITHUB_ENV
           echo "TARGET_ENVIRONMENT_URL=https://orgaed9ca50.crm8.dynamics.com/" >> $env:GITHUB_ENV
           echo "CLIENT_ID=ae393b69-14a9-4076-b470-4be8182aad41" >> $env:GITHUB_ENV
